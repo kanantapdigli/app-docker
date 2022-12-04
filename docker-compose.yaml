@@ -1,0 +1,28 @@
+version: '3'
+services:
+  api:
+    build:
+      dockerfile: API/Dockerfile
+    ports:
+    -  "8080:80"
+    environment:
+      ASPNETCORE_URLS: "http://+"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    volumes:
+    -  api-path:/wwwroot/uploads
+
+  web:
+    build:
+      dockerfile: Web/Dockerfile
+    ports:
+    -  "4040:80"
+    environment:
+      ASPNETCORE_URLS: "http://+"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    volumes:
+    -  web-path:/wwwroot/uploads 
+
+
+volumes:
+  api-path:
+  web-path:
